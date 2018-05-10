@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "r-apex",
+  "name": "moment-apex",
   "version": "0.0.0",
   "scripts": {
     "start": "electric"
