@@ -1,0 +1,128 @@
+---
+title: "Home"
+description: "Moment.apex is a library that parses, manipulates and displays dates and times in Apex."
+---
+
+{namespace pageIndex}
+
+/**
+ */
+{template .render}
+	{@param site: ?}
+
+	{call main.render data="all"}
+		{param content kind="html"}
+			{call .header data="all" /}
+			{call .why /}
+			{call .features /}
+			{call .how /}
+			{call .highlights /}
+			{call Footer.render data="all" /}
+		{/param}
+	{/call}
+{/template}
+
+/**
+ */
+{template .header}
+	{@param site: ?}
+
+	<header class="header">
+		<div class="container">
+			<h1 class="header-title">{$site.title}</h1>
+			<h2 class="header-subtitle">{$site.index.description}</h2>
+			<div class="header-cta">
+				<a href="/moment-apex/tutorials/getting_started/step_1.html" class="btn btn-accent">Get Started</a>
+			</div>
+		</div>
+	</header>
+{/template}
+
+/**
+ */
+{template .why}
+	<article class="about">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-md-offset-2">
+					<h3 class="about-title">Why Moment.apex?</h3>
+					<p class="about-description">Moment.apex provides a nice and neat way to handle date and time in Apex. It offers the missing functionality to parse date/time from strings. Also it has a rich set of API to manipulate and display date/time.</p>
+				</div>
+			</div>
+		</div>
+	</article>
+{/template}
+
+/**
+ */
+{template .features}
+	<div class="features">
+		<div class="container">
+			<div class="row">
+				<section class="feature col-md-4 col-md-offset-2">
+					<h3 class="feature-title">Date/Time Parsing</h3>
+					<p class="feature-description">Moment.apex can parse Date/Time from strings, which is not currently supported in Apex.</p>
+				</section>
+				<section class="feature col-md-4">
+					<h3 class="feature-title">Date/Time Manipulation</h3>
+					<p class="feature-description">Moment.apex manipulates Date/Time with a fluent API.</p>
+				</section>
+				<section class="feature col-md-4">
+					<h3 class="feature-title">Date/Time Display</h3>
+					<p class="feature-description">Moment.apex provides API to display humanized duration as well as Date/Time formatting.</p>
+				</section>
+			</div>
+		</div>
+	</div>
+{/template}
+
+/**
+ */
+{template .how}
+	<article class="about">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-md-offset-2">
+					<h3 class="about-title">Straightforward API</h3>
+					<p class="about-description">Moment.apex has a well-designed API to be easily used in Apex code.</p>
+				</div>
+			</div>
+		</div>
+	</article>
+{/template}
+
+/**
+ */
+{template .highlights}
+	<div class="highlights">
+		<div class="container">
+			<section class="highlight row">
+				<div class="col-md-6 col-md-offset-2">
+					<h4 class="highlight-title">Date/Time Parsing</h4>
+					<p class="highlight-description">Moment.apex can parse Date/Time from strings in a wide range of formats.</p>
+				</div>
+				<div class="col-md-5 col-md-offset-1">
+					<img class="highlight-image" src="/moment-apex/images/highlight_1.png" alt="Fluent API" height="200">
+				</div>
+			</section>
+			<section class="highlight row">
+				<div class="col-md-6 col-md-push-9">
+					<h4 class="highlight-title">Date/Time Manipulation</h4>
+					<p class="highlight-description">Moment.apex provides a rich set of APIs to manipuate Date/Time.</p>
+				</div>
+				<div class="col-md-5 col-md-offset-2 col-md-pull-6">
+					<img class="highlight-image" src="/moment-apex/images/highlight_2.png" alt="Collection Support" height="200">
+				</div>
+			</section>
+			<section class="highlight row">
+				<div class="col-md-6 col-md-offset-2">
+					<h4 class="highlight-title">Date/Time Display</h4>
+					<p class="highlight-description">Moment.apex can display a humanized string of Date/Time duration.</p>
+				</div>
+				<div class="col-md-5 col-md-offset-1">
+					<img class="highlight-image" src="/moment-apex/images/highlight_3.png" alt="Function Composition" height="200">
+				</div>
+			</section>
+		</div>
+	</div>
+{/template}
