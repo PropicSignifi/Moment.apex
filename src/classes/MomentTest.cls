@@ -103,16 +103,26 @@ private class MomentTest {
 
     @isTest
     private static void subtractTest() {
-        Moment m = new Moment(2018, 1, 7)
-            .subtract(3, 'days');
-        System.assertEquals(4, m.day());
+        Moment m = new Moment(2018, 2, 2, 2, 2, 2);
+
+        System.assertEquals(2017, m.subtract(1, 'year').year());
+        System.assertEquals(1, m.subtract(1, 'month').month());
+        System.assertEquals(1, m.subtract(1, 'day').day());
+        System.assertEquals(1, m.subtract(1, 'hour').hour());
+        System.assertEquals(1, m.subtract(1, 'minute').minute());
+        System.assertEquals(1, m.subtract(1, 'second').second());
     }
 
     @isTest
     private static void addTest() {
-        Moment m = new Moment(2018, 1, 1)
-            .add(3, 'days');
-        System.assertEquals(4, m.day());
+        Moment m = new Moment(2018, 1, 1, 1, 1, 1);
+
+        System.assertEquals(2019, m.add(1, 'year').year());
+        System.assertEquals(2, m.add(1, 'month').month());
+        System.assertEquals(2, m.add(1, 'day').day());
+        System.assertEquals(2, m.add(1, 'hour').hour());
+        System.assertEquals(2, m.add(1, 'minute').minute());
+        System.assertEquals(2, m.add(1, 'second').second());
     }
 
     @isTest
@@ -120,10 +130,16 @@ private class MomentTest {
         Moment m = new Moment()
             .field('year', 2018)
             .field('month', 10)
-            .field('day', 10);
+            .field('day', 10)
+            .field('hour', 10)
+            .field('minute', 10)
+            .field('second', 10);
         System.assertEquals(2018, m.field('year'));
         System.assertEquals(10, m.field('month'));
         System.assertEquals(10, m.field('day'));
+        System.assertEquals(10, m.field('hour'));
+        System.assertEquals(10, m.field('minute'));
+        System.assertEquals(10, m.field('second'));
     }
 
     @isTest
@@ -136,6 +152,7 @@ private class MomentTest {
     private static void quarterTest() {
         Moment m = new Moment().year(2018).month(1).day(3).hour(10).minute(0).second(0).millisecond(0);
         m = m.quarter(2);
+        m = m.quarters(2);
 
         System.assertEquals(4, m.month());
     }
@@ -183,6 +200,15 @@ private class MomentTest {
         System.assertEquals(0, m.minute());
         System.assertEquals(0, m.second());
         System.assertEquals(0, m.millisecond());
+
+        m = new Moment().years(2018).months(5).days(1).hours(10).minutes(0).seconds(0).milliseconds(0);
+        System.assertEquals(2018, m.years());
+        System.assertEquals(5, m.months());
+        System.assertEquals(1, m.days());
+        System.assertEquals(10, m.hours());
+        System.assertEquals(0, m.minutes());
+        System.assertEquals(0, m.seconds());
+        System.assertEquals(0, m.milliseconds());
     }
 
     @isTest
@@ -277,5 +303,33 @@ private class MomentTest {
             Datetime.newInstance(2000, 1, 1),
             m.toDatetime()
         );
+
+        System.assert(new Moment(Datetime.now().date()) != null);
+        System.assert(new Moment(Datetime.now().time()) != null);
+        System.assert(new Moment(Datetime.now().getTime()) != null);
+        System.assert(new Moment('2018/01/01', new List<String>{ 'yyyy/MM/dd' }) != null);
+        System.assert(new Moment('2018/01/01', Moment.FORMAT_DATE) != null);
+        System.assert(new Moment(Datetime.now().date(), Datetime.now().time()) != null);
+        System.assert(new Moment(new Map<String, Integer>{
+            'year' => 2018,
+            'month' => 10,
+            'day' => 1
+        }) != null);
+        System.assert(new Moment(new List<Integer>{ 2018, 10, 1 }) != null);
+        System.assert(new Moment(new Moment()) != null);
     }
+
+    @isTest
+        private static void getValueTest() {
+            Moment m = new Moment();
+            System.assert(m.toTime() != null);
+
+            System.assert(m.valueOf() > 0);
+
+            System.assert(m.toList().size() == 7);
+
+            System.assert(m.toMap().size() == 7);
+
+            System.assertEquals(m.compareTo(m), 0);
+        }
 }
